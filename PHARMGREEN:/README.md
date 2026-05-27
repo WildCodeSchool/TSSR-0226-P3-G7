@@ -25,9 +25,9 @@
   - 4.9 [Messagerie](#49-messagerie)
   - 4.10 [Clients](#410-clients)
 ### 5. [SPRINTS](#5-sprints)
-### 6. [Difficultés rencontrées](#6-difficultés-rencontrées)
-### 7. [Solutions apportées ](#7-solutions-apportées)
-### 8. [Améliorations possibles](#8-améliorations-possibles)
+### 6. [DIFFICULTIES](#6-difficulties)
+### 7. [SOLUTIONS PROVIDED](#7-solutions_provided)
+### 8. [IMPROVEMENTS](#8-improvements)
 
 
 
