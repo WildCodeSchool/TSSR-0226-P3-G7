@@ -3,7 +3,7 @@
 # SOMMAIRE
 
 
-### 1. [PRESENTATION DU PROJET](#1-presentation-du-projet)
+### 1. [PROJECT PRESENTATION](#1-projet_presentation)
 ### 2. [NAMING](#2-naming)
 ### 3. [ARCHITECTURE](#3-architecture)
   - 3.1 [Overview](#31-overview)
