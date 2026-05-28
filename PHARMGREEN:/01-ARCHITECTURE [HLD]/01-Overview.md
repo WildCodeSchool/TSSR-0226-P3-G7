@@ -1,9 +1,9 @@
 # overview.md — Vue d'ensemble de l'infrastructure
 
-> **Type** : HLD — High Level Design  
+> **Type** : HLD - High Level Design  
 > **Dossier** : `architecture/`  
-> **Projet** : TSSR Projet 3 — Build Your Infra  
-> **Client** : Pharmgreen — Lyon  
+> **Projet** : TSSR Projet 3 - Build Your Infra  
+> **Client** : Pharmgreen - Lyon  
 > **Domaine AD** : `tssr.lan`  
 > **Dernière mise à jour** : 28/05/2026  
 > **Auteur** : Patrick TAMBWE
@@ -34,7 +34,7 @@ Le projet se déroule sur **10 semaines** organisées en **10 sprints hebdomadai
 
 ## 2. Objectifs globaux
 
-### Objectifs principaux — obligatoires à 100 %
+### Objectifs principaux - obligatoires à 100 %
 
 | # | Objectif | Brique technique | Statut |
 |---|----------|-----------------|--------|
@@ -69,4 +69,17 @@ Le projet se déroule sur **10 semaines** organisées en **10 sprints hebdomadai
 ## 3. Schéma de l'infrastructure
 
 <img width="667" height="755" alt="SCHEMA_INFRA_VFpng" src="https://github.com/user-attachments/assets/fc7f03fa-8e70-4b83-ba86-ceeb04076f79" />
+
+
+### Flux inter-zones - règles fondamentales
+
+| Flux | Direction | Autorisé | Remarque |
+|------|-----------|----------|----------|
+| Clients internes | LAN → WAN | Oui | Accès internet |
+| Clients internes | LAN → DMZ | Oui | Accès au site web externe |
+| Serveur web externe | DMZ → LAN | Non | Isolation DMZ |
+| Internet | WAN → DMZ (80/443) | Oui | Accès site web public |
+| Internet | WAN → LAN | Non | Protection réseau interne |
+| Administration | LAN → FW01 (443) | Oui | Console web pfSense |
+
 
