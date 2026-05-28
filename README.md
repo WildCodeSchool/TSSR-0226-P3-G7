@@ -128,10 +128,10 @@ L'infrastructure cible reposera sur **9 machines virtuelles minimum**, hébergé
 | SRVWIN02 | Windows Server 2022 Core | AD DS · DNS (réplique) | 172.16.10.2 | LAN |
 | SRVWIN03 | Windows Server 2022 Core | AD DS · DNS (réplique) | 172.16.10.3 | LAN |
 | SRVWIN04 | Windows Server 2022 GUI | WSUS | 172.16.10.4 | LAN |
-| SRVLX01 | Debian 12 CLI | GLPI · Messagerie Zimbra | 172.16.10.5 | LAN |
+| SRVLX01 | Debian 13 CLI | GLPI · Messagerie Zimbra | 172.16.10.5 | LAN |
 | IPBX01 | AlmaLinux / FreePBX | Téléphonie VoIP | 172.16.10.6 | LAN |
-| SRVWEB01 | Debian 12 CLI | Serveur web interne | 172.16.10.7 | LAN |
-| SRVWEB02 | Debian 12 CLI | Serveur web externe | 172.16.20.1 | DMZ |
+| SRVWEB01 | Debian 13 CLI | Serveur web interne | 172.16.10.7 | LAN |
+| SRVWEB02 | Debian 13 CLI | Serveur web externe | 172.16.20.1 | DMZ |
 | CLIWIN01 | Windows 10 | Poste client | DHCP .10 → .200 | LAN |
 | CLIWIN02 | Windows 11 | Poste client | DHCP .10 → .200 | LAN |
 
