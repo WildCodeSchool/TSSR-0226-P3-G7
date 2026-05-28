@@ -1,4 +1,4 @@
-# overview.md — Vue d'ensemble de l'infrastructure
+# overview.md - Vue d'ensemble de l'infrastructure
 
 > **Type** : HLD - High Level Design  
 > **Dossier** : `architecture/`  
