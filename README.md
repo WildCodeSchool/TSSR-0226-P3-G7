@@ -142,6 +142,4 @@ L'infrastructure cible reposera sur **9 machines virtuelles minimum**, hébergé
 <img width="667" height="755" alt="SCHEMA_INFRA_VFpng" src="https://github.com/user-attachments/assets/f26a3047-6f61-4ac3-a467-fa366f3b3027" />
 
 
-```
-
 
