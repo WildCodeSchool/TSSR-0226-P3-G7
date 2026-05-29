@@ -287,7 +287,7 @@ Les risques suivants ont été identifiés en début de projet et font l'objet d
 
 | # | Risque | Probabilité | Impact | Mitigation |
 |---|--------|-------------|--------|-----------|
-| R01 | Machine hôte insuffisante en RAM | Moyenne | Élevé | Réduire la RAM des VMs au minimum · ne pas allumer toutes les VMs simultanément |
+| R01 | Machine hôte insuffisante en RAM | presque élévé | Élevé | Réduire la RAM des VMs au minimum · ne pas allumer toutes les VMs simultanément |
 | R02 | Zimbra difficile à installer | Élevée | Moyen | Prévoir à peu près 3h+ · avoir iRedMail en solution de repli |
 | R03 | Import des 208 utilisateurs échoue | Faible | Élevé | Tester le script PS sur 5 users avant de lancer l'import complet |
 | R04 | Règles pfSense mal configurées bloquent les services | Moyenne | Élevé | Tester chaque règle individuellement avant de passer à la suivante |
