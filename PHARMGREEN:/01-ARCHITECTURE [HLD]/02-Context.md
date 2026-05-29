@@ -1,4 +1,4 @@
-# context.md — Contexte et besoins du projet
+# context.md - Contexte et besoins du projet
 
 > **Type** : HLD - High Level Design  
 > **Dossier** : `architecture/`  
