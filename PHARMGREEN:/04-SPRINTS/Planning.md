@@ -5,7 +5,7 @@
 > **Client** : Pharmgreen - Lyon  
 > **Domaine AD** : `tssr.lan`  
 > **Durée totale** : 10 semaines · 10 sprints  
-> **Dernière mise à jour** : 29/05/2026  
+> **Dernière mise à jour** : 03/05/2026  
 > **Auteur** : Patrick TAMBWE
 
 ---
@@ -354,12 +354,12 @@ Le déploiement des services suit une logique de dépendances stricte. Un servic
 
 ## 6. Suivi d'avancement global
 
-> Mettre à jour ce tableau à chaque fin de sprint
+> Mettre à jour ce tableau est faite à chaque fin de sprint
 
 | Sprint | Objectif | Taux | Statut | Date fin réelle |
 |--------|---------|------|--------|----------------|
-| Sprint 01 | Analyse & planification | 0% | A faire | - |
-| Sprint 02 | Infrastructure réseau pfSense | 0% | A faire | - |
+| Sprint 01 | Analyse & planification | 78% | En cours | - |
+| Sprint 02 | Infrastructure réseau pfSense | 25% | A faire | - |
 | Sprint 03 | Domaine AD DS + DNS + DHCP | 0% | A faire | - |
 | Sprint 04 | Stratégies GPO & sécurité | 0% | A faire | - |
 | Sprint 05 | GLPI & gestion de parc | 0% | A faire | - |
