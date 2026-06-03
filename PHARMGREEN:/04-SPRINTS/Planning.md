@@ -354,7 +354,7 @@ Le déploiement des services suit une logique de dépendances stricte. Un servic
 
 ## 6. Suivi d'avancement global
 
-> Mettre à jour ce tableau est faite à chaque fin de sprint
+> La mise à jour ce tableau est faite à chaque fin de sprint
 
 | Sprint | Objectif | Taux | Statut | Date fin réelle |
 |--------|---------|------|--------|----------------|
