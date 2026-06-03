@@ -358,7 +358,7 @@ Le déploiement des services suit une logique de dépendances stricte. Un servic
 
 | Sprint | Objectif | Taux | Statut | Date fin réelle |
 |--------|---------|------|--------|----------------|
-| Sprint 01 | Analyse & planification | 78% | En cours | - |
+| Sprint 01 | Analyse & planification | 89% | En cours | - |
 | Sprint 02 | Infrastructure réseau pfSense | 25% | A faire | - |
 | Sprint 03 | Domaine AD DS + DNS + DHCP | 0% | A faire | - |
 | Sprint 04 | Stratégies GPO & sécurité | 0% | A faire | - |
