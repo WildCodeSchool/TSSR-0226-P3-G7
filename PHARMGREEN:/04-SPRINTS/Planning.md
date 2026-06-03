@@ -5,7 +5,7 @@
 > **Client** : Pharmgreen - Lyon  
 > **Domaine AD** : `tssr.lan`  
 > **Durée totale** : 10 semaines · 10 sprints  
-> **Dernière mise à jour** : 03/05/2026  
+> **Dernière mise à jour** : 03/06/2026  
 > **Auteur** : Patrick TAMBWE
 
 ---
