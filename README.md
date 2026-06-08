@@ -213,4 +213,25 @@ La nomenclature complète est définie dans le fichier [`naming.md`](./naming.md
   - **Messagerie** : `prenom.nom@pharmgreen.fr` (identique au format existant en cloud).
 
 
+---
+
+## 7. Structure du dépôt 
+
+---
+
+La structure du dépôt est constituée de 4 dossiers principaux :  `Architecture`, `Components` , `Operations` et `Sprints`. Les 4 dossiers sont tous à la racine, au même niveau; aucun ne dépend d'un autre.
+
+<img width="873" height="748" alt="Arborescence_Globale_Dépôt _Github_VF" src="https://github.com/user-attachments/assets/e572c6db-1719-41a0-8791-eb9a17017d55" />
+
+---
+
+### 7.1. Architecture - HLD
+
+Le dossier `architecture/` constitue la vue macroscopique du projet. Il regroupe le contexte client, les choix de conception retenus, le périmètre d'intervention, l'inventaire des machines virtuelles et le schéma réseau zonal WAN/LAN/DMZ.
+
+
+<img width="806" height="597" alt="Dossier_Architecture" src="https://github.com/user-attachments/assets/23c339ca-cdd3-4ee0-a7e8-0cab2d2008bd" />
+
+
+
 
