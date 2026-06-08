@@ -25,9 +25,9 @@
 - [5. Services déployés](#5-services-déployés)
 - [6. Nomenclature](#6-nomenclature)
 - [7. Structure du dépôt](#7-structure-du-dépôt)
-  - [7.1 Architecture - HLD](#71-architecture-hld)
-  - [7.2 Composants - LLD](#72-composants-lld)
-  - [7.3 Exploitation - DEX](#73-exploitation-dex)
+  - [7.1 Architecture](#71-architecture)
+  - [7.2 Composants](#72-composants)
+  - [7.3 Exploitation](#73-exploitation)
   - [7.4 Sprints - Suivi](#74-sprints-suivi)
 - [8. Avancement par sprint](#8-avancement-par-sprint)
 - [9. Équipe projet](#9-équipe-projet)
@@ -114,7 +114,7 @@ Ce dépôt GitHub constitue le **livrable documentaire officiel** de ce projet. 
 ---
 
 
-## 4. Infrastructure  déployée
+## 4. Infrastructure déployée
 
 L'infrastructure cible reposera sur **9 machines virtuelles minimum**, hébergées sur un hyperviseur de type 2 (VirtualBox). Chaque VM remplit un ou plusieurs rôles précis, listés ci-dessous sans détail de configuration (voir le dossier [`components/`](./components/) pour le détail technique).
 
@@ -225,13 +225,35 @@ La structure du dépôt est constituée de 4 dossiers principaux :  `Architectur
 
 ---
 
-### 7.1. Architecture - HLD
+### 7.1 Architecture
 
 Le dossier `architecture/` constitue la vue macroscopique du projet. Il regroupe le contexte client, les choix de conception retenus, le périmètre d'intervention, l'inventaire des machines virtuelles et le schéma réseau zonal WAN/LAN/DMZ.
 
 
 <img width="806" height="597" alt="Dossier_Architecture" src="https://github.com/user-attachments/assets/23c339ca-cdd3-4ee0-a7e8-0cab2d2008bd" />
 
+---
 
+### 7.2 Composants 
+
+Le dossier `components/` constitue la vue détaillée du projet. Il documente brique par brique chaque service déployé ; `pfSense`, `Active Directory`, `DNS`, `DHCP`, `GLPI`, `WSUS`, `VoIP` et `messagerie` avec leurs fichiers de configuration, scripts et ressources techniques associées.
+
+<img width="596" height="732" alt="Structure_Dossier_Components" src="https://github.com/user-attachments/assets/66b257ef-eb19-495a-b59a-b2f04cff1453" />
+
+---
+
+### 7.3 Exploitation 
+
+Le dossier `Exploitation/` ou `Operations/` constitue la documentation d'exploitation du projet. Il regroupe les procédures d'administration courantes, la politique de sauvegarde et les guides de résolution d'incidents, destinés à assurer la continuité et la maintenance de l'infrastructure après déploiement. Il comprend : 
+  - Dossier SOP et ses fichiers
+  - Fichier Overview.md
+  - Fichier Daily Operations.md
+  - Fichier Incidents.md
+
+---
+
+### 7.4 Sprints-Suivi
+
+Le dossier `sprints/` assure la traçabilité chronologique du projet. Il documente semaine par semaine les actions réalisées, les décisions prises et les livrables produits à chaque étape, permettant de suivre l'avancement global des 10 sprints du projet.
 
 
