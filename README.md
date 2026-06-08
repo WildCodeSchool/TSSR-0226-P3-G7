@@ -114,7 +114,7 @@ Ce dépôt GitHub constitue le **livrable documentaire officiel** de ce projet. 
 ---
 
 
-## 4. Infrastructure à déployer
+## 4. Infrastructure  déployée
 
 L'infrastructure cible reposera sur **9 machines virtuelles minimum**, hébergées sur un hyperviseur de type 2 (VirtualBox). Chaque VM remplit un ou plusieurs rôles précis, listés ci-dessous sans détail de configuration (voir le dossier [`components/`](./components/) pour le détail technique).
 
@@ -140,6 +140,77 @@ L'infrastructure cible reposera sur **9 machines virtuelles minimum**, hébergé
 ### 4.2 Architecture réseau
 
 <img width="667" height="755" alt="SCHEMA_INFRA_VFpng" src="https://github.com/user-attachments/assets/f26a3047-6f61-4ac3-a467-fa366f3b3027" />
+
+
+---
+
+### 4.3. Plan d'adressage IP
+
+
+| Zone | Réseau | Masque | Passerelle |
+|------|--------|--------|------------|
+| LAN | 172.16.10.0 | /24 | 172.16.10.254 (FW01 eth1) |
+| DMZ | 172.16.20.0 | /24 | 172.16.20.254 (FW01 eth2) |
+| WAN | IP box FAI | /24 | IP box FAI |
+
+| Machine | Adresse IP | Zone |
+|---------|-----------|------|
+| FW01 (eth1 LAN) | 172.16.10.254 | LAN |
+| FW01 (eth2 DMZ) | 172.16.20.254 | DMZ |
+| SRVWIN01 | 172.16.10.1 | LAN |
+| SRVWIN02 | 172.16.10.2 | LAN |
+| SRVWIN03 | 172.16.10.3 | LAN |
+| SRVWIN04 | 172.16.10.4 | LAN |
+| SRVLX01 | 172.16.10.5 | LAN |
+| IPBX01 | 172.16.10.6 | LAN |
+| SRVWEB01 | 172.16.10.7 | LAN |
+| SRVWEB02 | 172.16.20.1 | DMZ |
+| CLIWIN01 / CLIWIN02 | DHCP 172.16.10.10 → .200 | LAN |
+
+Pour le plan d'adressage détaillé avec les VLANs, voir [`architecture/ip_configuration.md`](./architecture/ip_configuration.md).
+
+
+---
+
+## 5. Services déployés
+
+
+L'infrastructure fournit les services suivants aux utilisateurs et administrateurs de Pharmgreen. Cette liste donne une vision fonctionnelle. En ce qui concerne l'ordre logique de déploiement et les interdépendances, se référer à : [`architecture/services.md`](./architecture/services.md).
+
+  - **Identité et accès** : Le domaine Active Directory `tssr.lan` centralise l'authentification de l'ensemble des 211 utilisateurs. Les comptes, groupes et       politiques de sécurité (GPO) sont gérés depuis SRVWIN01 et répliqués sur SRVWIN02 et SRVWIN03.
+
+  - **Réseau** : Le service DHCP distribue automatiquement les adresses IP aux postes clients dans la plage `172.16.10.10` à `172.16.10.200`. Le service DNS       assure la résolution des noms internes (`tssr.lan`) et externe (via les forwarders vers les DNS publics).
+
+  - **Sécurité périmétrique** : Le pare-feu pfSense (FW01) contrôle l'ensemble des flux entre les trois zones réseau (WAN, LAN, DMZ) selon le principe du       *Deny All* par défaut.
+
+  - **Gestion de parc** : GLPI, accessible depuis n'importe quel poste client via navigateur web, permet la gestion de l'inventaire matériel et logiciel ainsi     que la gestion des tickets d'incident.
+
+  - **Mises à jour** : WSUS centralise et contrôle la distribution des mises à jour de sécurité Windows sur l'ensemble des machines du domaine, organisées en      groupes de déploiement.
+
+  - **Téléphonie** : FreePBX fournit une solution de téléphonie VoIP unifiée avec des numéros internes attribués aux utilisateurs, accessibles depuis un           softphone (3CX) installé sur les postes clients.
+
+  - **Messagerie** : Un serveur Zimbra (ou iRedMail) héberge les boîtes mail internes des collaborateurs au format `prenom.nom@pharmgreen.fr`, accessibles         depuis un client de messagerie ou un webmail.
+
+  - **Web externe** : Un serveur web Apache/Nginx en DMZ expose un site accessible depuis internet, sans accès possible au réseau interne.
+
+---
+
+
+## 6. Nomenclature
+
+La nomenclature complète est définie dans le fichier [`naming.md`](./naming.md) à la racine du dépôt. En voici les grandes lignes:
+
+  - **Domaine Active Directory** : `tssr.lan`
+
+  - **Machines** : Les serveurs Windows suivent le format `SRVWINxx`, les serveurs Linux `SRVLXxx`, le pare-feu `FWxx`, les postes VoIP `IPBXxx`, et les           clients `CLIWINxx`. La numérotation commence à `01`.
+
+  - **Utilisateurs AD** : Le format retenu est `prenom.nom` en minuscules, sans accent (ex. : `patrick.tambwe`). En cas d'homonyme, un numéro est ajouté en     suffixe (`prenom.nom2`).
+
+  - **Groupes AD** : La logique AGDLP est appliquée. Les groupes globaux suivent le format `GG-Departement` et les groupes de domaine local `GDL-Service-Droit`.
+
+  - **GPO** : Le format est `GPO-[Cible]-[Fonction]-[id]` (ex. : `GPO-DOM-PasswordPolicy-01`).
+
+  - **Messagerie** : `prenom.nom@pharmgreen.fr` (identique au format existant en cloud).
 
 
 
