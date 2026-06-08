@@ -256,4 +256,6 @@ Le dossier `Exploitation/` ou `Operations/` constitue la documentation d'exploit
 
 Le dossier `sprints/` assure la traçabilité chronologique du projet. Il documente semaine par semaine les actions réalisées, les décisions prises et les livrables produits à chaque étape, permettant de suivre l'avancement global des 10 sprints du projet.
 
+<img width="1371" height="485" alt="Gantt_Sprints" src="https://github.com/user-attachments/assets/3f4de94a-13a2-4f25-b448-feb49c23e98f" />
+
 
