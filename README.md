@@ -86,7 +86,7 @@ Ce dépôt GitHub constitue le **livrable documentaire officiel** de ce projet. 
 
 | # | Service | Machine | Statut |
 |---|---------|---------|--------|
-| 01 | Pare-feu périmétrique WAN/LAN/DMZ | FW01 - pfSense | En cours |
+| 01 | Pare-feu périmétrique WAN/LAN/DMZ | FW01 - pfSense | Fait |
 | 02 | Contrôleur de domaine Active Directory | SRVWIN01 - Win Server 2022 | A faire |
 | 03 | Service DNS interne | SRVWIN01 - Rôle DNS | A faire |
 | 04 | Service DHCP pour le LAN | SRVWIN01 - Rôle DHCP | A faire |
