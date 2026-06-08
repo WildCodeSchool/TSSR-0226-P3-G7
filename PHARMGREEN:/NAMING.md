@@ -4,7 +4,7 @@
 > **Projet** : TSSR Projet 3 — Build Your Infra  
 > **Client** : Pharmgreen — Lyon  
 > **Domaine AD** : `tssr.lan`  
-> **Dernière mise à jour** : 25/05/2026
+> **Dernière mise à jour** : 08/06/2026
 > **Auteur** : Patrick TAMBWE
 
 ---
@@ -31,9 +31,9 @@
 
 | Élément | Valeur | Exemple |
 |---------|--------|---------|
-| Nom de domaine FQDN | `tssr.lan` | — |
-| Nom NetBIOS | `TSSR` | — |
-| Niveau fonctionnel | Windows Server 2022 | — |
+| Nom de domaine FQDN | `tssr.lan` | - |
+| Nom NetBIOS | `TSSR` | - |
+| Niveau fonctionnel | Windows Server 2022 | - |
 | DC principal | SRVWIN01 | `SRVWIN01.tssr.lan` |
 | DC secondaire | SRVWIN02 | `SRVWIN02.tssr.lan` |
 | DC tertiaire | SRVWIN03 | `SRVWIN03.tssr.lan` |
@@ -60,9 +60,9 @@
 | Nom machine | Type | OS | Rôle | IP statique | Zone |
 |-------------|------|----|------|-------------|------|
 | `FW01` | Pare-feu | pfSense (FreeBSD) | Pare-feu périmétrique · routage inter-zones | eth1: 172.16.10.254 · eth2: 172.16.20.254 | WAN/LAN/DMZ |
-| `SRVWIN01` | Serveur | Windows Server 2022 GUI | AD DS · DNS · DHCP — DC principal | 172.16.10.1 | LAN |
-| `SRVWIN02` | Serveur | Windows Server 2022 Core | AD DS · DNS — DC secondaire | 172.16.10.2 | LAN |
-| `SRVWIN03` | Serveur | Windows Server 2022 Core | AD DS · DNS — DC tertiaire | 172.16.10.3 | LAN |
+| `SRVWIN01` | Serveur | Windows Server 2022 GUI | AD DS · DNS · DHCP - DC principal | 172.16.10.1 | LAN |
+| `SRVWIN02` | Serveur | Windows Server 2022 Core | AD DS · DNS - DC secondaire | 172.16.10.2 | LAN |
+| `SRVWIN03` | Serveur | Windows Server 2022 Core | AD DS · DNS - DC tertiaire | 172.16.10.3 | LAN |
 | `SRVWIN04` | Serveur | Windows Server 2022 GUI | WSUS | 172.16.10.4 | LAN |
 | `SRVLX01` | Serveur | Debian 13 CLI | GLPI · Messagerie Zimbra | 172.16.10.5 | LAN |
 | `IPBX01` | Serveur VoIP | AlmaLinux / FreePBX | Téléphonie VoIP | 172.16.10.6 | LAN |
@@ -73,10 +73,10 @@
 
 ### Règles complémentaires
 
-- Le nom machine est défini **avant** toute installation — il ne doit pas être modifié après jonction au domaine
+- Le nom machine est défini **avant** toute installation - il ne doit pas être modifié après jonction au domaine
 - Le nom est saisi en **MAJUSCULES** sur la machine elle-même
 - Le nom est toujours en **minuscules** dans la documentation Markdown
-- Numérotation séquentielle à partir de `01` — jamais de `0` seul
+- Numérotation séquentielle à partir de `01` - jamais de `0` seul
 
 ---
 
@@ -90,8 +90,8 @@ CLI/OS/NUMÉRO
 
 | Nom | OS | Usage | Remarque |
 |-----|----|-------|----------|
-| `CLIWIN01` | Windows 10 | Poste client 1 — membre du domaine tssr.lan | Softphone 3CX installé |
-| `CLIWIN02` | Windows 11 | Poste client 2 — membre du domaine tssr.lan | Softphone 3CX installé |
+| `CLIWIN01` | Windows 10 | Poste client 1 - membre du domaine tssr.lan | Softphone 3CX installé |
+| `CLIWIN02` | Windows 11 | Poste client 2 - membre du domaine tssr.lan | Softphone 3CX installé |
 
 > Les 211 postes Pharmgreen (PC portables hétérogènes) suivront la même convention lors d'une intégration future au domaine.
 
@@ -101,7 +101,7 @@ CLI/OS/NUMÉRO
 
 | Nom | Type | Rôle | Remarque |
 |-----|------|------|----------|
-| `FW01` | Pare-feu virtuel | pfSense — 3 interfaces | Unique pare-feu de l'infrastructure |
+| `FW01` | Pare-feu virtuel | pfSense - 3 interfaces | Unique pare-feu de l'infrastructure |
 | `SW-LAN` | Switch virtuel | Distribution LAN 172.16.10.0/24 | Créé dans l'hyperviseur |
 | `SW-DMZ` | Switch virtuel | Distribution DMZ 172.16.20.0/24 | Créé dans l'hyperviseur |
 
@@ -167,60 +167,11 @@ Dans le cas où deux personnes auraient exactement le même prénom et le même 
 
 ### Structure hiérarchique
 
-```
-tssr.lan
-└── OU=Pharmgreen                       ← Conteneur racine entreprise
-    ├── OU=_Utilisateurs                ← Tous les comptes utilisateurs
-    │   ├── OU=Communication
-    │   │   ├── OU=Gestion-des-marques
-    │   │   ├── OU=Publicite
-    │   │   ├── OU=Relation-Medias
-    │   │   └── OU=Relation-Publique-et-Presse
-    │   ├── OU=Developpement-Logiciel
-    │   │   ├── OU=Analyse-et-Conception
-    │   │   ├── OU=Developpement
-    │   │   └── OU=Tests-et-Qualite
-    │   ├── OU=Direction-Financiere
-    │   │   ├── OU=Comptabilite
-    │   │   ├── OU=Controle-de-Gestion
-    │   │   └── OU=Finance
-    │   ├── OU=Direction-Generale
-    │   ├── OU=Direction-Marketing
-    │   │   ├── OU=Marketing-Digital
-    │   │   ├── OU=Marketing-Operationnel
-    │   │   ├── OU=Marketing-Produit
-    │   │   └── OU=Marketing-Strategique
-    │   ├── OU=R-et-D
-    │   │   ├── OU=Innovation-et-Strategie
-    │   │   └── OU=Laboratoire
-    │   ├── OU=RH
-    │   │   ├── OU=Formation
-    │   │   ├── OU=Gestion-des-Performances
-    │   │   ├── OU=Recrutement
-    │   │   └── OU=Sante-et-Securite
-    │   ├── OU=Service-Juridique
-    │   │   ├── OU=Contentieux
-    │   │   ├── OU=Contrats
-    │   │   └── OU=Propriete-Intellectuelle
-    │   ├── OU=Services-Generaux
-    │   │   ├── OU=Gestion-Immobiliere
-    │   │   └── OU=Logistique
-    │   ├── OU=Systemes-Information
-    │   │   ├── OU=Data
-    │   │   └── OU=Developpement-Logiciel-SI
-    │   └── OU=Ventes-et-Dev-Commercial
-    │       ├── OU=ADV
-    │       ├── OU=B2B
-    │       ├── OU=B2C
-    │       ├── OU=Developpement-International
-    │       ├── OU=Grands-Comptes
-    │       ├── OU=Service-Achat
-    │       └── OU=Service-Client
-    ├── OU=_Ordinateurs                 ← Postes clients membres du domaine
-    ├── OU=_Groupes                     ← Groupes de sécurité GG et GDL
-    ├── OU=_Admins                      ← Comptes administrateurs IT
-    └── OU=_Serveurs                    ← Objets ordinateurs serveurs
-```
+
+
+<img width="627" height="802" alt="STRUCTURE HIÉRARCHIQUE_OU_ADDS" src="https://github.com/user-attachments/assets/6c076c1a-3c93-4219-a845-75118b9a81bc" />
+
+
 
 ### Règles de nommage des OU
 
@@ -303,16 +254,16 @@ GPO-[CIBLE]-[FONCTION]-[ID]
 
 | Nom GPO | Cible | Fonction | Lié à | Obligatoire |
 |---------|-------|----------|-------|-------------|
-| `GPO-DOM-PasswordPolicy-01` | Domaine | Politique de mots de passe (complexité, longueur min. 8) | `OU=Pharmgreen` | ✅ Oui |
-| `GPO-DOM-AccountLockout-01` | Domaine | Verrouillage compte après 5 erreurs | `OU=Pharmgreen` | ✅ Oui |
-| `GPO-DOM-ControlPanel-Block-01` | Utilisateurs | Blocage panneau de configuration | `OU=_Utilisateurs` | ✅ Oui |
-| `GPO-DOM-LocalAdmin-01` | Ordinateurs | Compte domaine = admin local machines | `OU=_Ordinateurs` | ✅ Oui |
-| `GPO-DOM-PowerShell-Security-01` | Domaine | Politique de sécurité PowerShell | `OU=Pharmgreen` | ✅ Oui |
-| `GPO-DOM-Custom-01` | Domaine | GPO personnalisée au choix | `OU=Pharmgreen` | ✅ Oui |
-| `GPO-DOM-Custom-02` | Domaine | GPO personnalisée au choix | `OU=Pharmgreen` | ✅ Oui |
-| `GPO-USR-LogonHours-01` | Utilisateurs | Restriction horaire 7h30–20h lun–sam | `OU=_Utilisateurs` | ⭕ Secondaire |
-| `GPO-DOM-WSUS-Update-01` | Ordinateurs | Déploiement WSUS via GPO | `OU=_Ordinateurs` | ⭕ Secondaire |
-| `GPO-USR-DriveMapping-I-01` | Utilisateurs | Mappage lecteur réseau I: | `OU=_Utilisateurs` | ⭕ Secondaire |
+| `GPO-DOM-PasswordPolicy-01` | Domaine | Politique de mots de passe (complexité, longueur min. 8) | `OU=Pharmgreen` | Oui |
+| `GPO-DOM-AccountLockout-01` | Domaine | Verrouillage compte après 5 erreurs | `OU=Pharmgreen` | Oui |
+| `GPO-DOM-ControlPanel-Block-01` | Utilisateurs | Blocage panneau de configuration | `OU=_Utilisateurs` | Oui |
+| `GPO-DOM-LocalAdmin-01` | Ordinateurs | Compte domaine = admin local machines | `OU=_Ordinateurs` | Oui |
+| `GPO-DOM-PowerShell-Security-01` | Domaine | Politique de sécurité PowerShell | `OU=Pharmgreen` | Oui |
+| `GPO-DOM-Custom-01` | Domaine | GPO personnalisée au choix | `OU=Pharmgreen` | Oui |
+| `GPO-DOM-Custom-02` | Domaine | GPO personnalisée au choix | `OU=Pharmgreen` | Oui |
+| `GPO-USR-LogonHours-01` | Utilisateurs | Restriction horaire 7h30–20h lun–sam | `OU=_Utilisateurs` | Secondaire |
+| `GPO-DOM-WSUS-Update-01` | Ordinateurs | Déploiement WSUS via GPO | `OU=_Ordinateurs` | Secondaire |
+| `GPO-USR-DriveMapping-I-01` | Utilisateurs | Mappage lecteur réseau I: | `OU=_Utilisateurs` | Secondaire |
 
 ---
 
@@ -331,12 +282,12 @@ Les comptes administrateurs sont **séparés** des comptes utilisateurs standard
 
 | Compte | Machine | Mot de passe par défaut | À changer |
 |--------|---------|------------------------|-----------|
-| `Administrator` | SRVWIN01/02/03/04 | `Azerty1*` | ✅ Oui — dès l'installation |
-| `admin` | FW01 pfSense | `pfsense` | ✅ Oui — dès la 1ère connexion |
-| `root` | SRVLX01 | `Azerty1*` | ✅ Oui — dès l'installation |
-| `wilder` | Toutes VMs | `Azerty1*` | ✅ Oui — à la mise en production |
+| `Administrator` | SRVWIN01/02/03/04 | `Azerty1*` | Oui - dès l'installation |
+| `admin` | FW01 pfSense | `pfsense` | Oui - dès la 1ère connexion |
+| `root` | SRVLX01 | `Azerty1*` | Oui - dès l'installation |
+| `wilder` | Toutes VMs | `Azerty1*` | Oui - à la mise en production |
 
-> ⚠️ Les mots de passe par défaut sont uniquement pour la phase de déploiement. Ils doivent être changés avant toute mise en production.
+> Les mots de passe par défaut sont uniquement pour la phase de déploiement. Ils doivent être changés avant toute mise en production.
 
 ---
 
@@ -365,7 +316,7 @@ prenom.nom@pharmgreen.fr
 | Règle | Description | Exemple correct | Exemple incorrect |
 |-------|-------------|-----------------|-------------------|
 | Langue | Toujours en anglais | `network.md` | `reseau.md` |
-| Espaces | Interdits — utiliser `-` ou `_` | `ip-configuration.md` | `ip configuration.md` |
+| Espaces | Interdits - utiliser `-` ou `_` | `ip-configuration.md` | `ip configuration.md` |
 | Accents | Interdits | `security.md` | `sécurité.md` |
 | Majuscules | Uniquement pour `README.md` et `SOP/` | `README.md` | `Readme.md` |
 | Extension | Toujours `.md` pour la documentation | `overview.md` | `overview.txt` |
@@ -411,7 +362,7 @@ Chaque dossier de brique dans `components/` contient un sous-dossier `ressources
 | `install-glpi.sh` | Script Bash installation GLPI |
 | `configure-wsus.ps1` | Script PS configuration WSUS |
 
-> ❌ **À ne jamais faire** : `image1.png`, `capture écran 3.png`, `script final VRAI.ps1`, `copie de backup.md`
+> **À ne jamais faire** : `image1.png`, `capture écran 3.png`, `script final VRAI.ps1`, `copie de backup.md`
 
 ---
 
@@ -435,8 +386,8 @@ Chaque dossier de brique dans `components/` contient un sous-dossier `ressources
 
 Les 3 prestataires de la société **Kamera** (Ariane Kaine, Jean Maire, Jean-Pascal Millith) travaillent dans le département Communication mais **ne sont pas intégrés** dans l'AD DS de Pharmgreen, conformément aux exigences du projet et aux bonnes pratiques de sécurité.
 
-> 📄 Détail complet → [`components/active-directory/ressources/analyse-rh-pharmgreen.xlsx`](components/active-directory/ressources/analyse-rh-pharmgreen.xlsx)
+> Détail complet → [`components/active-directory/ressources/analyse-rh-pharmgreen.xlsx`](components/active-directory/ressources/analyse-rh-pharmgreen.xlsx)
 
 ---
 
-*Document maintenu par [Ton nom] · Projet TSSR P3 · Pharmgreen · tssr.lan*
+*Document maintenu par Patrick TAMBWE · Projet TSSR_P3_G7 · Pharmgreen · tssr.lan*
