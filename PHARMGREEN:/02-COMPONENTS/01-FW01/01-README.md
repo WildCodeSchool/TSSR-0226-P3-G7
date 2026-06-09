@@ -1,4 +1,4 @@
-# fw01/ - Pare-feu pfSense
+# FW01/ - Pare-feu pfSense
 
 > **Type** : LLD — Low Level Design  
 > **Dossier** : `components/fw01/`  
