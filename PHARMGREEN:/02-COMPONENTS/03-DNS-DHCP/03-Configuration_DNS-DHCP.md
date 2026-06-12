@@ -78,7 +78,7 @@ Resolve-DnsName srvwin01.tssr.lan
 | Réseau | 172.16.10.0/24 |
 | Plage de distribution | 172.16.10.10 -> 172.16.10.200 |
 | Masque | 255.255.255.0 |
-| Durée du bail | 8 jours |
+| Durée du bail | 8 jours /Par defaut |
 | Statut | Actif |
 
 ### 3.2 Adresses réservées hors plage DHCP
