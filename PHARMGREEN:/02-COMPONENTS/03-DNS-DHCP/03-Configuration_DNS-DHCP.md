@@ -128,6 +128,6 @@ Test effectué depuis **CLIWIN02** après renouvellement du bail DHCP :
 
 ## 5. Liens
 
-- [Active-Directory/Configuration.md](../active-directory/configuration.md)
+- [ACTIVE-DIRECTORY/Configuration_DNS-DHCP.md](../active-directory/configuration_dns-dhcp.md)
 - [firewall/configuration.md](../fw01/configuration.md)
 
