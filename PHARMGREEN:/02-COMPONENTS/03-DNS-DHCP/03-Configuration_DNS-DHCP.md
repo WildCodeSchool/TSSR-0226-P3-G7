@@ -118,11 +118,11 @@ Test effectué depuis **CLIWIN02** après renouvellement du bail DHCP :
 | Paramètre | Valeur obtenue | Statut |
 |---|---|---|
 | Adresse IPv4 | 172.16.10.10 | Dans la plage DHCP |
-| Masque | 255.255.255.0 | ok |
+| Masque | 255.255.255.0 | Ok |
 | Passerelle | 172.16.10.254 | FW01 |
 | Serveur DHCP | 172.16.10.1 | SRVWIN01 |
 | Serveurs DNS | 172.16.10.1 | SRVWIN01 |
-| Suffixe DNS | tssr.lan | ok |
+| Suffixe DNS | tssr.lan | Ok |
 
 ---
 
