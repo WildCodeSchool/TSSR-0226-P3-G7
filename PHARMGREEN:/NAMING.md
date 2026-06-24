@@ -49,7 +49,7 @@
 [TYPE][OS][NUMÉRO]
 ```
 
-| Segment | Description | Valeurs possibles |
+| Element | Description | Valeurs possibles |
 |---------|-------------|-------------------|
 | `TYPE` | Type de machine | `SRV` = Serveur · `CLI` = Client · `FW` = Pare-feu · `IPBX` = VoIP |
 | `OS` | Système d'exploitation | `WIN` = Windows · `LX` = Linux |
