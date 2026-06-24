@@ -41,19 +41,8 @@
 
 ## 4. Logique d'application des GPO
 
-```
-tssr.lan
-├── GPO-DOM-PasswordPolicy-01        ← s'applique à tout le domaine
-├── GPO-DOM-AccountLockout-01        ← s'applique à tout le domaine
-└── Pharmgreen
-    ├── _Utilisateurs
-    │   ├── GPO-DOM-ControlPanel-Block-01
-    │   └── GPO-DOM-Custom-01-Fond d'écran Pharmgreen
-    └── _Ordinateurs
-        ├── GPO-DOM-LocalAdmin-01
-        ├── GPO-DOM-PowerShell-Security-01
-        └── GPO-DOM-Custom-02-Désactiver clé USB
-```
+<img width="725" height="421" alt="LOGIQUE_GPO" src="https://github.com/user-attachments/assets/4035e2fc-1b32-4f1b-8363-0415d23e9d8a" />
+
 
 ---
 
