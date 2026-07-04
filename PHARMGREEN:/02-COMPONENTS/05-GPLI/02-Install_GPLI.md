@@ -154,9 +154,9 @@ Changer les mots de passe par défaut des comptes `glpi`, `tech`, `normal`, `pos
 | RAM | 4096 Mo |
 | vCPU | 2 |
 | Disque | 60 Go (VDI, alloué dynamiquement) |
-| Réseau | Réseau interne — LAN-Pharmgreen |
+| Réseau | Réseau interne - LAN-Pharmgreen |
 
-> **Incident rencontré** : une erreur `E_INVALIDARG` est survenue lors de la création initiale, un fichier `CLIWIN01.vdi` fantôme existant déjà sur le disque suite à une tentative précédente. Résolution : Gestionnaire de médias virtuels VirtualBox (`Ctrl+D`) → sélection du disque fantôme → Supprimer (suppression physique du fichier) → recréation de la VM.
+> **Incident rencontré** : une erreur `E_INVALIDARG` est survenue lors de la création initiale, un fichier `CLIWIN01.vdi` fantôme existant déjà sur le disque suite à une tentative précédente. Résolution : Gestionnaire de médias virtuels VirtualBox (`Ctrl+D`) -> sélection du disque fantôme -> Supprimer (suppression physique du fichier) -> recréation de la VM.
 
 ### 4.2 Installation de Windows 11
 
