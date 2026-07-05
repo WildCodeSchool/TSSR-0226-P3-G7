@@ -28,17 +28,17 @@ Deux groupes ont été créés pour organiser le parc Pharmgreen :
 
 **Chemin** : Console WSUS -> **Options -> Automatic Approvals**
 
-**Règle par défaut identifiée** :
+**Règle configurée et validée** :
 
 > Quand une mise à jour est de type **Critical Updates** ou **Security Updates** -> Approuver pour **tous les ordinateurs**
 
-** Statut à date de rédaction** : cette règle n'a pas pu être **sauvegardée**, la console WSUS affichant le message :
+**Statut : Validée et sauvegardée.**
 
-```
-Cannot save configuration because the server is synchronizing.
-```
+Cette règle n'avait initialement pas pu être sauvegardée en raison du blocage de synchronisation détaillé en section 4 (la console affichait `Cannot save configuration because the server is synchronizing`). WSUS verrouille en effet certains paramètres tant qu'une synchronisation est active ou en tentative répétée.
 
-Ce blocage est directement lié à l'incident de synchronisation détaillé en section 4 ci-dessous - WSUS verrouille certains paramètres tant qu'une synchronisation est active ou en tentative répétée. **Cette tâche sera finalisée dès que le blocage de synchronisation sera levé.**
+Le verrou s'est levé après l'échec d'une tentative de synchronisation, libérant temporairement la configuration. La règle **Default Automatic Approval Rule** a alors été sauvegardée avec succès (bouton **OK**, sans message d'erreur), confirmant l'enregistrement de :
+- Déclencheur : *Critical Updates, Security Updates*
+- Cible : *all computers*
 
 ---
 
@@ -46,8 +46,8 @@ Ce blocage est directement lié à l'incident de synchronisation détaillé en s
 
 ### 3.1 Procédure suivie
 
-1. Lancement de l'assistant de configuration WSUS (Gestionnaire de serveur → Outils → Windows Server Update Services, premier lancement)
-2. Avant de commencer : Microsoft Update Improvement Program → décoché
+1. Lancement de l'assistant de configuration WSUS (Gestionnaire de serveur -> Outils -> Windows Server Update Services, premier lancement)
+2. Avant de commencer : Microsoft Update Improvement Program -> décoché
 3. Choix du serveur amont : **Synchronize from Microsoft Update**
 4. Proxy : aucun proxy configuré (accès direct via NAT FW01/pfSense)
 5. Étape **"Connect to Upstream Server"** -> **Start Connecting**
@@ -104,7 +104,7 @@ Compte tenu de la nature externe et documentée du blocage :
 1. **Aucune reconstruction de VM n'a été effectuée** - l'infrastructure locale (réseau, rôle WSUS, IIS, certificats, base de données) a été validée comme saine à chaque étape du diagnostic.
 2. La tâche T07 est marquée **bloquée (cause externe)** plutôt qu'en échec côté prestataire.
 3. Une nouvelle tentative de synchronisation sera relancée périodiquement, sans action supplémentaire nécessaire de notre part, dans l'attente d'une résolution côté Microsoft.
-4. Les tâches T06 et T08, dépendantes d'une synchronisation réussie, sont mises en attente.
+4. La tâche T06 a pu être finalisée en profitant d'une fenêtre de déverrouillage temporaire consécutive à l'échec d'une tentative de synchronisation (voir section 2). La tâche T08, elle, reste dépendante d'une synchronisation réussie.
 
 ---
 
@@ -115,6 +115,7 @@ Compte tenu de la nature externe et documentée du blocage :
 | Sprint 06 | 6 tentatives de synchronisation manuelle | Toutes échouées ou annulées, blocage à 0% |
 | Sprint 06 | Diagnostic complet (réseau, IIS, certificats, BITS, TLS) | Infrastructure locale confirmée saine |
 | Sprint 06 | Analyse des logs SoftwareDistribution.log | Cause identifiée : incident de catalogue côté Microsoft |
+| Sprint 06 | Tentative de sauvegarde règle T06 après échec de synchro | Verrou levé, règle sauvegardée avec succès |
 | À planifier | Nouvelle tentative de synchronisation | En attente |
 
 ---
@@ -123,9 +124,8 @@ Compte tenu de la nature externe et documentée du blocage :
 
 1. Relancer **Synchronize Now** dans la console WSUS
 2. Vérifier que la progression dépasse 0% et que le statut passe à `Succeeded`
-3. Sauvegarder la règle d'approbation automatique (T06)
-4. Approuver manuellement quelques mises à jour critiques pour test si nécessaire
-5. Déployer et tester la réception des mises à jour sur **CLIWIN01** (T08) :
+3. Approuver manuellement quelques mises à jour critiques pour test si nécessaire
+4. Déployer et tester la réception des mises à jour sur **CLIWIN01** (T08) :
    ```powershell
    gpupdate /force
    wuauclt /detectnow
