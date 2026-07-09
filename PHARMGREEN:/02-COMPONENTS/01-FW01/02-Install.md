@@ -1,11 +1,9 @@
-# installation.md - Installation de pfSense FW01
+# INSTALLATION - FW01 (pfSense CE)
 
 > **Type** : LLD - Low Level Design  
 > **Dossier** : `components/fw01/`  
 > **Sprint** : Sprint 02  
 > **Statut** : Terminé  
-> **Dernière mise à jour** : 09/06/2026  
-> **Auteur** : Patrick TAMBWE
 
 ---
 
@@ -13,13 +11,16 @@
 
 - [1. Prérequis](#1-prérequis)
 - [2. Création de la VM dans VirtualBox](#2-création-de-la-vm-dans-virtualbox)
-- [3. Configuration des interfaces réseau](#3-configuration-des-interfaces-réseau)
-- [4. Installation de pfSense](#4-installation-de-pfsense)
-- [5. Vérification post-installation](#5-vérification-post-installation)
+- [3. Installation de pfSense CE](#3-installation-de-pfsense-ce)
+- [4. Accès à interface web](#4-acces-à-interface-web)
+- [5. Régles de pare-feu créées](#5-regles-de-pare-feu-creees)
+- [6. Vérification après installation](#6-verification-apres-installation)
 
 ---
 
-## 1. Prérequis
+## 1 Prérequis
+
+---
 
 | Élément | Valeur |
 |---------|--------|
@@ -33,150 +34,162 @@
 
 ---
 
-## 2. Création de la VM dans VirtualBox
+--------------------------------------------------------------------------------------------------------
+
+
+
+
+## 2 Création de la VM dans VirtualBox
+
+**Hyperviseur** : VirtualBox 7.2
 
 ### 2.1 Paramètres généraux
 
-| Paramètre | Valeur |
-|-----------|--------|
-| Nom | `FW01` |
-| Type | `BSD` |
-| Version | `FreeBSD (64-bit)` |
-| RAM | `1024 Mo` |
-| vCPU | `1` |
+| Champ | Valeur |
+|---|---|
+| Nom | FW01 |
+| Type | Other |
+| Version | Other/Unknown 64-bit *(pfSense = FreeBSD, non listé nativement)* |
+| RAM | 1 Go (minimum), confort recommandé : 2 Go |
+| CPU | 1-2 vCPU |
+| Disque | 20 Go |
+| Contrôleur de stockage | **SATA** *(obligatoire - un contrôleur IDE n'est pas détecté correctement par pfSense sous VirtualBox)* |
 
-> RRMARQUE: Ne pas utiliser l'installation automatisée (Unattended Install); décocher cette option.
+> Ne pas monter le disque sur un contrôleur IDE - pfSense CE échoue à détecter le disque dans cette configuration sous VirtualBox.
 
-### 2.2 Disque dur virtuel
+### 2.2 Configuration réseau - 3 interfaces (à faire AVANT le premier démarrage)
 
-| Paramètre | Valeur |
-|-----------|--------|
-| Type | `VDI (VirtualBox Disk Image)` |
-| Allocation | `Dynamiquement alloué` |
-| Taille | `20 Go` |
-| Contrôleur | `SATA` (obligatoire - IDE provoque une erreur d'installation) |
+| Adaptateur VirtualBox | Mode | Nom réseau | Interface pfSense (attendue) | Zone |
+|---|---|---|---|---|
+| Adaptateur 1 | NAT | - | em0 -> WAN | Accès Internet |
+| Adaptateur 2 | Réseau interne | `LAN-Pharmgreen` | em1 -> LAN | 172.16.10.0/24 |
+| Adaptateur 3 | Réseau interne | `DMZ-Pharmgreen` | em2 -> OPT1 (DMZ) | 172.16.20.0/24 |
 
-> REMARQUE: Le disque doit être sur un contrôleur **SATA** et non IDE. pfSense ne détecte pas les disques IDE sous VirtualBox.
+> Cocher **"Activer l'interface réseau"** sur les 3 adaptateurs.
+> Les noms `LAN-Pharmgreen` et `DMZ-Pharmgreen` sont sensibles à la casse ; toutes les autres VM du projet doivent utiliser exactement les mêmes noms de réseau interne pour communiquer.
 
-### 2.3 Paramètres système
+### 2.3 Paramètres système complémentaires
 
 | Section | Paramètre | Valeur |
-|---------|-----------|--------|
-| Système - Processeur | PAE/NX | Activé |
-| Système - Ordre de démarrage | 1. Optique · 2. Disque dur | Disquette désactivée |
+|---|---|---|
+| Système -> Processeur | PAE/NX | Activé |
+| Système -> Ordre de démarrage | 1. Optique · 2. Disque dur | Disquette désactivée |
 | Affichage | Mémoire vidéo | 16 Mo |
 
----
+### 2.4 Monter l'ISO
 
-## 3. Configuration des interfaces réseau
-
-Les 3 interfaces doivent être configurées **avant** le premier démarrage.
-
-| Adaptateur VirtualBox | Mode | Nom réseau | Interface pfSense | Zone |
-|----------------------|------|------------|-------------------|------|
-| Adapter 1 | NAT | - | em0 - WAN | Internet |
-| Adapter 2 | Réseau interne | `LAN-Pharmgreen` | em1 - LAN | 172.16.10.0/24 |
-| Adapter 3 | Réseau interne | `DMZ-Pharmgreen` | em2 - OPT1/DMZ | 172.16.20.0/24 |
-
-> La case **"Activer l'interface réseau"** doit être cochée sur les 3 adaptateurs.  
-> Les noms `LAN-Pharmgreen` et `DMZ-Pharmgreen` sont sensibles à la casse - toutes les autres VMs doivent utiliser exactement les mêmes noms.
+**Stockage -> Contrôleur IDE** (lecteur optique) -> sélectionner `pfSense-CE-2.8.1-RELEASE-amd64.iso`.
 
 ---
 
-## 4. Installation de pfSense
+## 3. Installation de pfSense CE
 
-### 4.1 Démarrage sur l'ISO
+### 3.1 Démarrage sur l'ISO
 
-1. Monter l'ISO dans le lecteur optique (Stockage - Contrôleur IDE -> icône disque)
-2. Démarrer la VM
-3. Menu boot -> option **1 - Boot Multi user** -> appuyer sur Entrée
+Démarrer la VM. Au menu de boot, sélectionner **1 - Boot Multi user** -> Entrée.
 
-### 4.2 Assistant d'installation
+### 3.2 Assistant d'installation
 
 | Écran | Action |
-|-------|--------|
-| Active Subscription Validation | Cliquer **Install CE** |
-| Installation Options | File System : `ZFS` · Partition Scheme : `GPT` -> Continue |
-| ZFS Virtual Device Type | Sélectionner `stripe — No Redundancy` -> OK |
-| Disk Selection | Cocher `da0 / ada0` (20 Go) avec Barre espace -> OK |
-| Last Chance Confirmation | Sélectionner **Yes** -> Entrée |
+|---|---|
+| Active Subscription Validation | **Install CE** *(Community Edition - pas Plus)* |
+| Installation Options | File System : **ZFS** · Partition Scheme : **GPT** -> Continue |
+| ZFS Virtual Device Type | **stripe - No Redundancy** -> OK |
+| Disk Selection | Cocher le disque `da0`/`ada0` (20 Go) avec la barre espace -> OK |
+| Last Chance Confirmation | **Yes** -> Entrée |
 | Installation en cours | Attendre 2 à 5 minutes |
-| Installation Complete | Sélectionner **Reboot** -> Entrée |
+| Installation Complete | **Reboot** -> Entrée |
 
-> Avertissement : **Action critique au reboot** - dès que l'écran devient noir, éjecter immédiatement l'ISO dans VirtualBox :  
-> `Périphériques → Lecteurs optiques → Retirer le disque du lecteur virtuel`  
-> Sans cette action, pfSense redémarre sur l'ISO au lieu du disque installé.
+> **Action critique au reboot** : dès que l'écran devient noir, éjecter immédiatement l'ISO dans VirtualBox (**Périphériques -> Lecteurs optiques -> Retirer le disque du lecteur virtuel**). Sans cette action, pfSense redémarre en boucle sur l'ISO au lieu du disque installé.
 
-### 4.3 Configuration initiale des interfaces (console)
+### 3.3 Configuration initiale des interfaces (console)
 
-Au premier démarrage depuis le disque, pfSense affiche le menu de configuration :
+Au premier démarrage depuis le disque, le menu de configuration console s'affiche :
 
-**Étape 1 - VLANs**
----
+**Étape 1 : VLANs**
+```
 Should VLANs be set up now [y|n]? n
----
+```
 
-**Étape 2 - Assignation des interfaces**
-
-
-| Menu | Action |
-|-------|--------|
-| Enter the WAN interface name | Saisir **em0** |
-| Enter the LAN interface name | Saisir **em1** |
-| Enter the OPT1 interface name | Saisir **em2** |
-| Enter the OPT2 interface name | Ne rien saisir (Entrée - vide) |
-
+**Étape 2 : Assignation des interfaces**
+```
+Enter the WAN interface name  : em0
+Enter the LAN interface name  : em1
+Enter the OPT1 interface name : em2
+Enter the OPT2 interface name : (Entrée - vide)
 Do you want to proceed?       : y
+```
+
+**Étape 3 : Configuration IP du LAN** (option **2** du menu principal)
+```
+Interface à configurer   : 2 (LAN)
+Configure IPv4 via DHCP? : n
+IPv4 address             : 172.16.10.254
+Subnet bit count         : 24
+Upstream gateway         : (Entrée - vide, pas de passerelle sur le LAN)
+Configure IPv6?          : n
+Enable DHCP on LAN?      : n  (le DHCP sera pris en charge par SRVWIN01, pas par pfSense)
+```
+
+**Étape 4 : Configuration IP du DMZ (OPT1)** (option **2** du menu, choisir l'interface OPT1)
+```
+IPv4 address : 172.16.20.254
+Subnet bit count : 24
+Enable DHCP on OPT1? : n
+```
+
+L'interface **WAN (em0)** reste en obtention automatique d'adresse (DHCP via le moteur NAT de VirtualBox) - aucune configuration manuelle nécessaire.
 
 ---
 
-**Étape 3 - Configuration IP du LAN (option 2 du menu)**
+## 4 Accès à interface web
 
-Interface à configurer        : 2 (LAN)
-Configure IPv4 via DHCP?      : n
-IPv4 address                  : 172.16.10.254
-Subnet bit count              : 24
-Upstream gateway              : (Entrée - vide)
-Configure IPv6?               : n
-IPv6 address                  : (Entrée - vide)
-Enable DHCP on LAN?           : y
-DHCP Range Start              : 172.16.10.10
-DHCP Range End                : 172.16.10.200
-Revert to HTTP?               : n
+Depuis un poste connecté au réseau `LAN-Pharmgreen` (ex. CLIWIN02), ouvrir un navigateur vers :
+```
+https://172.16.10.254
+```
+*(certificat auto-signé : accepter l'exception de sécurité)*
 
----
+Identifiants par défaut à la première connexion :
+```
+Utilisateur : admin
+Mot de passe : pfsense
+```
 
-**Étape 4 - Configuration IP de la DMZ (option 2 du menu)**
-
-Interface à configurer        : 3 (OPT1)
-Configure IPv4 via DHCP?      : n
-IPv4 address                  : 172.16.20.254
-Subnet bit count              : 24
-Upstream gateway              : (Entrée - vide)
-Configure IPv6?               : n
-IPv6 address                  : (Entrée - vide)
-Enable DHCP on OPT1?          : n
-Revert to HTTP?               : n
+L'assistant de configuration initiale (Setup Wizard) propose ensuite de changer ce mot de passe et de définir le nom d'hôte / domaine , étapes validées selon le cahier de charge du projet (nom d'hôte `FW01`, domaine `tssr.lan`).
 
 ---
 
-## 5. Vérification post-installation
+## 5 Règles de pare-feu créées
 
-### 5.1 Menu console pfSense
+| Règle | Interface | Source | Destination | Port | Action |
+|---|---|---|---|---|---|
+| R01 | LAN | LAN net | any | any | Allow *(règle par défaut)* |
+| R02 | WAN | any | OPT1 subnets (DMZ) | 80, 443 | Allow |
+| R03 | OPT1 (DMZ) | DMZ net | LAN net | any | Block |
+| R04 | *(implicite)* | any | any | any | Deny All *(règle implicite de pfSense en fin de liste)* |
+
+> **Ordre de démarrage impératif** : FW01 doit toujours démarrer en premier dans l'infrastructure. Sans lui, aucune VM du LAN n'obtient de bail DHCP (une fois SRVWIN01 configuré comme serveur DHCP) et ne peut router vers l'extérieur.
+
+---
+
+## 6 Vérification après installation
+
+### 6.1 Menu console pfSense
 
 Après configuration, le menu principal doit afficher :
 
 
 *** Welcome to pfSense 2.8.1-RELEASE (amd64) on pfSense ***
 
-WAN  (wan)  → em0 → v4/DHCP4: 10.0.2.15/24
-LAN  (lan)  → em1 → v4: 172.16.10.254/24
-OPT1 (opt1) → em2 → v4: 172.16.20.254/24
+WAN  (wan)  -> em0 -> v4/DHCP4: 10.0.2.15/24
+LAN  (lan)  -> em1 -> v4: 172.16.10.254/24
+OPT1 (opt1) -> em2 -> v4: 172.16.20.254/24
 
 
 ---
 
-### 5.2 Tests de connectivité depuis CLIWIN02
+### 6.2 Tests de connectivité depuis CLIWIN02
 
 | Test | Commande | Résultat attendu |
 |------|----------|-----------------|
@@ -186,7 +199,7 @@ OPT1 (opt1) → em2 → v4: 172.16.20.254/24
 
 ---
 
-### 5.3 Résultats obtenus 
+### 6.3 Résultats obtenus 
 
 | Action | Résultat |
 |--------|--------|
@@ -197,6 +210,3 @@ OPT1 (opt1) → em2 → v4: 172.16.20.254/24
 -> Saut 7 : dns.google [8.8.8.8]
 
 ---
-
-*Document maintenu par Patrick TAMBWE · Sprint 02 ·P3_G7_Pharmgreen · tssr.lan*
-
