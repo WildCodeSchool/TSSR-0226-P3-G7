@@ -7,7 +7,7 @@
 
 ---
 
-## Sommaire
+## Sommaire 
 
 - [1. Prérequis](#1-prérequis)
 - [2. Création de la VM dans VirtualBox](#2-création-de-la-vm-dans-virtualbox)
