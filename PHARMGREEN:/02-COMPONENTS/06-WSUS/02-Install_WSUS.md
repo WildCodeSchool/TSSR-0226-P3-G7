@@ -155,6 +155,142 @@ iisreset
 
 ---
 
+
+------------------------------------------------------------------------------------------------------------------
+
+
+
+# INSTALLATION — WSUS (SRVWIN04)
+
+## 1. Origine de la VM (Sprint 06)
+
+Contrairement aux autres serveurs du projet, **SRVWIN04 a été créée par clonage** d'un template Windows Server existant (plutôt que par installation complète depuis une ISO), puis reconfigurée aux standards du projet.
+
+| Champ | Valeur |
+|---|---|
+| Nom | SRVWIN04 |
+| Système | Windows Server 2022 *(hérité du template cloné)* |
+| Réseau | Adaptateur 1 → Réseau interne → `LAN-Pharmgreen` |
+
+### 1.1 Reconfiguration post-clonage
+
+Après clonage, la VM a été renommée et rejointe au domaine :
+
+```powershell
+Rename-Computer -NewName "SRVWIN04" -Restart
+```
+
+Jonction au domaine :
+```powershell
+$cred = Get-Credential TSSR\Administrateur
+Add-Computer -DomainName "tssr.lan" -Credential $cred -Restart
+```
+
+### 1.2 IP statique
+
+| Paramètre | Valeur |
+|---|---|
+| Adresse IP | 172.16.10.4 /24 |
+| Passerelle | 172.16.10.254 (FW01) |
+| DNS | 172.16.10.1 (SRVWIN01) |
+
+### 1.3 Vérification de la jonction au domaine
+
+```powershell
+Get-ComputerInfo | Select CsDomain, CsDomainRole
+hostname
+```
+
+Résultat attendu : `CsDomain = tssr.lan`, `CsDomainRole = MemberServer`, `hostname = SRVWIN04`.
+
+---
+
+## 2. Installation du rôle WSUS
+
+### 2.1 Créer le dossier de stockage du contenu
+
+```powershell
+New-Item -Path "C:\WSUS" -ItemType Directory
+```
+
+> ℹ️ Le chemin dépend de la configuration disque de la VM — utiliser `C:\WSUS` en l'absence de disque secondaire dédié (`D:\`).
+
+### 2.2 Installer le rôle
+
+```powershell
+Install-WindowsFeature -Name UpdateServices -IncludeManagementTools
+```
+
+Vérifier le résultat : `Success : True`.
+
+### 2.3 Post-installation — initialiser le dossier de contenu
+
+```powershell
+cd "C:\Program Files\Update Services\Tools"
+.\wsusutil.exe postinstall CONTENT_DIR=C:\WSUS
+```
+
+> ⚠️ Le chemin passé à `CONTENT_DIR` doit correspondre exactement au disque réellement disponible sur la VM — une erreur de lettre de lecteur (ex. `D:\WSUS` sur une machine sans disque D:) provoque l'échec `The device is not ready`.
+
+Cette étape peut prendre plusieurs minutes (création de la base de données interne WSUS/WID).
+
+---
+
+## 3. Premier lancement de la console WSUS
+
+Au premier lancement (**Outils → Windows Server Update Services**), l'assistant de configuration se déclenche :
+
+1. **Before You Begin** → Suivant
+2. **Join the Microsoft Update Improvement Program** → décoché → Suivant
+3. **Choose Upstream Server** → **Synchronize from Microsoft Update** → Suivant
+4. **Specify Proxy Server** → aucun proxy nécessaire (accès direct via NAT FW01) → Suivant
+5. **Connect to Upstream Server** → **Start Connecting**
+6. **Choose Languages** → Français, Anglais (selon besoin) → Suivant
+7. **Choose Products** → sélectionner les produits Windows Server / Windows 11 concernés par le parc Pharmgreen → Suivant
+8. **Choose Classifications** → Critical Updates, Security Updates *(a minima)* → Suivant
+9. **Set Sync Schedule** → synchronisation manuelle ou planifiée quotidienne → Suivant
+10. **Finished** → décocher **"Begin initial synchronization"** si l'on préfère lancer la synchro manuellement après coup
+
+---
+
+## 4. Création des groupes de machines
+
+**Console WSUS → Computers → All Computers → Add Computer Group...**
+
+| Groupe | Usage |
+|---|---|
+| Serveurs | Machines serveurs Windows Server |
+| Postes clients | Postes Windows 11 (CLIWIN01, CLIWIN02) |
+
+Procédure : clic droit sur **All Computers → Add Computer Group... → nom du groupe → Add**.
+
+---
+
+## 5. Approbation automatique des mises à jour
+
+**Console WSUS → Options → Automatic Approvals → Update Rules** :
+
+Règle **Default Automatic Approval Rule** :
+- Déclencheur : **Critical Updates, Security Updates**
+- Cible : **all computers**
+
+> ℹ️ Cette étape peut être bloquée (`Cannot save configuration because the server is synchronizing`) si une synchronisation est active ou en tentative répétée — WSUS verrouille certains paramètres dans ce cas. Relancer la sauvegarde après l'échec d'une tentative de synchronisation, moment où le verrou se libère temporairement.
+
+---
+
+## 6. Déploiement côté client (une fois la synchronisation opérationnelle)
+
+Sur un poste client déjà membre du domaine (ex. CLIWIN01) :
+```cmd
+gpupdate /force
+wuauclt /detectnow
+```
+
+Vérifier dans la console WSUS que le poste apparaît dans **Unassigned Computers**, puis l'assigner manuellement au groupe **Postes clients**.
+
+
+
+
 ## 7. Vérification finale de l'installation
 
 - [ ] Rôle WSUS installé et console accessible via Gestionnaire de serveur -> Outils -> Windows Server Update Services
