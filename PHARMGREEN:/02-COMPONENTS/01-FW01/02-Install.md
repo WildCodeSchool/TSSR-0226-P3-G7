@@ -1,4 +1,4 @@
-# INSTALLATION - FW01 (pfSense CE)
+# INSTALLATION : FW01 (pfSense CE)
 
 > **Type** : LLD - Low Level Design  
 > **Dossier** : `components/fw01/`  
