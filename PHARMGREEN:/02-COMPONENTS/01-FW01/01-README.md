@@ -1,11 +1,9 @@
-# FW01/ - Pare-feu pfSense
+# FW01 : Pare-feu pfSense
 
-> **Type** : LLD — Low Level Design  
+> **Type** : LLD : Low Level Design  
 > **Dossier** : `components/fw01/`  
 > **Sprint** : Sprint 02  
 > **Statut** : Terminé  
-> **Dernière mise à jour** : 09/06/2026 
-> **Auteur** : Patrick TAMBWE
 
 ---
 
@@ -21,11 +19,11 @@ C'est la **première brique déployée** du projet car toutes les autres VMs dé
 
 | Fonction | Détail |
 |----------|--------|
-| Pare-feu | Filtrage des flux entre WAN · LAN · DMZ |
+| Pare-feu | Filtrage des flux entre WAN , LAN , DMZ |
 | Routeur | Routage inter-zones |
-| Serveur DHCP | Attribution IP automatique sur le LAN (.10 → .200) |
+| Serveur DHCP | Attribution IP automatique sur le LAN (.10 -> .200) |
 | Serveur DNS | Résolution DNS pour les clients LAN |
-| Principe de sécurité | **Deny All** par défaut - seuls les flux explicitement autorisés passent |
+| Principe de sécurité | **Deny All** par défaut : seuls les flux explicitement autorisés passent |
 
 ---
 
@@ -47,7 +45,7 @@ C'est la **première brique déployée** du projet car toutes les autres VMs dé
 
 | Interface | Nom pfSense | Réseau VirtualBox | IP | Rôle |
 |-----------|-------------|-------------------|----|------|
-| Adapter 1 | WAN (em0) | NAT | DHCP · 10.0.2.15/24 | Connexion internet |
+| Adapter 1 | WAN (em0) | NAT | DHCP  10.0.2.15/24 | Connexion internet |
 | Adapter 2 | LAN (em1) | LAN-Pharmgreen | 172.16.10.254/24 | Réseau interne |
 | Adapter 3 | OPT1/DMZ (em2) | DMZ-Pharmgreen | 172.16.20.254/24 | Zone exposée |
 
@@ -85,5 +83,5 @@ C'est la **première brique déployée** du projet car toutes les autres VMs dé
 
 ---
 
-*Document maintenu par Patrick TAMBWE · Sprint 02 · P3_G7_Pharmgreen · tssr.lan*
+
 
