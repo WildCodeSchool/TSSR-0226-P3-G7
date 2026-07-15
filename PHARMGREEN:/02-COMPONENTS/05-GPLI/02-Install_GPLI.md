@@ -139,7 +139,7 @@ Redémarrer Apache :
 systemctl restart apache2
 ```
 
-Changer les mots de passe par défaut des comptes `glpi`, `tech`, `normal`, `post-only` (nouveau mot de passe : `Azerty1*`) via **Administration → Utilisateurs**.
+Changer les mots de passe par défaut des comptes `glpi`, `tech`, `normal`, `post-only` (nouveau mot de passe : `Azerty1*`) via **Administration -> Utilisateurs**.
 
 ---
 
@@ -180,7 +180,7 @@ Rename-Computer -NewName "CLIWIN01" -Restart
 
 1. Ouvrir la fenêtre "Exécuter" (`Windows + R`)
 2. Taper `sysdm.cpl` puis Entrée
-3. Onglet "Nom de l'ordinateur" → cliquer sur **Modifier...**
+3. Onglet "Nom de l'ordinateur" -> cliquer sur **Modifier...**
 4. Sélectionner **Domaine**, saisir : `tssr.lan`
 5. Renseigner les identifiants d'un administrateur du domaine (`TSSR\Administrateur`)
 6. Redémarrer la VM une fois la jonction confirmée
