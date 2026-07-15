@@ -1,11 +1,9 @@
-# configuration.md — Configuration de pfSense FW01
+# Configuration de pfSense FW01
 
-> **Type** : LLD — Low Level Design  
+> **Type** : LLD : Low Level Design  
 > **Dossier** : `components/fw01/`  
 > **Sprint** : Sprint 02  
 > **Statut** : Terminé  
-> **Dernière mise à jour** : 08/06/2026 
-> **Auteur** : Patrick TAMBWE
 
 ---
 
@@ -100,7 +98,7 @@ Logique de navigation :
 
 
 
-### Onglet WAN - Trafic entrant depuis internet
+### Onglet WAN : Trafic entrant depuis internet
 
 | # | Action | Protocol | Source | Destination | Ports | Description |
 |---|--------|----------|--------|-------------|-------|-------------|
@@ -110,7 +108,7 @@ Logique de navigation :
 
 -> Bogon networks (adresses ou réseaux IP non assignées)
 
-### Onglet LAN — Trafic depuis le réseau interne
+### Onglet LAN : Trafic depuis le réseau interne
 
 | # | Action | Protocol | Source | Destination | Ports | Description |
 |---|--------|----------|--------|-------------|-------|-------------|
@@ -118,7 +116,7 @@ Logique de navigation :
 | 2 | Pass | IPv4 * | LAN subnets | - | - | Default allow LAN to any rule |
 | 3 | Pass | IPv6 * | LAN subnets | - | - | Default allow LAN IPv6 to any rule |
 
-### Onglet OPT1 — Trafic depuis la DMZ
+### Onglet OPT1 : Trafic depuis la DMZ
 
 | # | Action | Protocol | Source | Destination | Ports | Description |
 |---|--------|----------|--------|-------------|-------|-------------|
@@ -126,7 +124,7 @@ Logique de navigation :
 
 ### Règle implicite (Deny All)
 
-> pfSense a appliqué automatiquement une règle **Deny All implicite** en dernier - tout trafic ne correspondant à aucune règle est silencieusement bloqué.
+> pfSense a appliqué automatiquement une règle **Deny All implicite** en dernier ; tout trafic ne correspondant à aucune règle est silencieusement bloqué.
 
 ---
 
@@ -136,7 +134,7 @@ Logique de navigation :
 |---------|------|-----------|-----------|-----------|
 | Interface web GUI | 443 | HTTPS | LAN | Entrant |
 | Interface web GUI | 80 | HTTP | LAN | Entrant (redirigé vers 443) |
-| DNS | 53 | UDP/TCP | LAN · DMZ | Sortant |
+| DNS | 53 | UDP/TCP | LAN - DMZ | Sortant |
 | DHCP | 67/68 | UDP | LAN | Entrant/Sortant |
 | HTTP | 80 | TCP | WAN -> DMZ | Entrant |
 | HTTPS | 443 | TCP | WAN -> DMZ | Entrant |
@@ -187,5 +185,4 @@ Logique de navigation :
 
 ---
 
-*Document maintenu par Patrick TAMBWE . Sprint 02 . Pharmgreen. P3_G7 .tssr.lan*
 
