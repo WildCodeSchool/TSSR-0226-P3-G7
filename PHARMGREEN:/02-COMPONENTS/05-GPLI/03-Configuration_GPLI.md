@@ -116,7 +116,7 @@ Dans le cadre de la réorganisation du parc informatique (l'entreprise étant hi
 
 | Nom | Statut | Type | Système d'exploitation | Technicien responsable | Commentaire |
 |---|---|---|---|---|---|
-| **SRVLX01** | En Service | Serveur | Debian 13 / x86_64 | Cyril François | Serveur GLPI — IP 172.16.10.5 |
+| **SRVLX01** | En Service | Serveur | Debian 13 / x86_64 | Cyril François | Serveur GLPI: IP 172.16.10.5 |
 | **SRVWIN01** | En Service | Serveur | Windows Server 2025 / x86_64 | Cyril François | Contrôleur de domaine (AD DS, DNS, DHCP) - IP 172.16.10.1 |
 | **CLIWIN02** | En Service | Ordinateur | Windows 11 / x86_64 | Cyril François | Poste client - joint à tssr.lan |
 
