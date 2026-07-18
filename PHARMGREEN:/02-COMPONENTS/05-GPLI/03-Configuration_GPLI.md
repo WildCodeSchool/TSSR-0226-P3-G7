@@ -6,7 +6,7 @@
 
 ## 1. Création de l'entité Pharmgreen
 
-Une entité dédiée a été créée afin de cloisonner les données de l'entreprise dans GLPI — bonne pratique pour un prestataire pouvant gérer plusieurs clients à terme.
+Une entité dédiée a été créée afin de cloisonner les données de l'entreprise dans GLPI 
 
 **Chemin GLPI** : `Administration -> Entités -> Ajouter`
 
@@ -71,7 +71,7 @@ Trois comptes GLPI ont été créés, en cohérence avec les données réelles d
 
 > Le champ **"Entité par défaut"** n'apparaît que lorsqu'un utilisateur a plusieurs entités/profils assignés - il ne s'affiche pas ici puisque chaque compte n'a qu'une seule entité (Pharmgreen).
 
-> Les deux autres membres du département SI (Hassan Liffite, Rosalie Roux - Data scientists) n'ont pas encore de compte GLPI ; création reportée à une itération ultérieure.
+> Les deux autres membres du département SI (Hassan Liffite, Rosalie Roux : Data scientists) n'ont pas encore de compte GLPI ; création reportée à une itération ultérieure.
 
 ### 3.3 Procédure détaillée (exemple avec Tina Le Hecourt)
 
