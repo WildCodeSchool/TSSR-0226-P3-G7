@@ -1,9 +1,7 @@
-# hardware.md : Inventaire du matériel
+# Inventaire du matériel
 
 > **Type** : LLD  (Low Level Design)  
-> **Dossier** : `components/`  
-> **Projet** : TSSR Projet 3 - Build Your Infra  
-> **Client** : Pharmgreen - Lyon  
+> **Dossier** : `components/`   
 > **Domaine AD** : `tssr.lan`  
 
 ---
