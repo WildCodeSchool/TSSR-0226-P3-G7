@@ -27,9 +27,7 @@
   - [7.3 Exploitation](#73-exploitation)
   - [7.4 Sprints - Suivi](#74-sprints-suivi)
 - [8. Avancement par sprint](#8-avancement-par-sprint)
-- [9. Équipe projet](#9-équipe-projet)
-- [10. Ressources et liens utiles](#10-ressources-et-liens-utiles)
-- [11. Difficultés rencontrées](#11-difficultés-rencontrées)
+- [9. Difficultés rencontrées](#9-difficultés-rencontrées)
 
 
  ## 1. Présentation du projet
@@ -253,6 +251,6 @@ Le dossier `Exploitation/` ou `Operations/` constitue la documentation d'exploit
 
 Le dossier `sprints/` assure la traçabilité chronologique du projet. Il documente semaine par semaine les actions réalisées, les décisions prises et les livrables produits à chaque étape, permettant de suivre l'avancement global des 10 sprints du projet.
 
-<img width="1371" height="485" alt="Gantt_Sprints" src="https://github.com/user-attachments/assets/3f4de94a-13a2-4f25-b448-feb49c23e98f" />
 
+<img width="1147" height="412" alt="Diagramme_Grantt" src="https://github.com/user-attachments/assets/69480296-749c-41ec-86a8-a98f23b0ec02" />
 
