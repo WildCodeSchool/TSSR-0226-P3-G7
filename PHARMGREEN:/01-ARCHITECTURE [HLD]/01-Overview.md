@@ -1,12 +1,11 @@
 # overview.md - Vue d'ensemble de l'infrastructure
 
-> **Type** : HLD - High Level Design  
+> **Type** : HLD (High Level Design'  
 > **Dossier** : `architecture/`  
 > **Projet** : TSSR Projet 3 - Build Your Infra  
 > **Client** : Pharmgreen - Lyon  
 > **Domaine AD** : `tssr.lan`  
-> **Dernière mise à jour** : 28/05/2026  
-> **Auteur** : Patrick TAMBWE
+
 
 ---
 
@@ -16,7 +15,7 @@
 - [2. Objectifs globaux](#2-objectifs-globaux)
 - [3. Schéma de l'infrastructure](#3-schéma-de-linfrastructure)
 - [4. Liste des briques techniques](#4-liste-des-briques-techniques)
-- [5. Liens vers les autres fichiers HLD](#5-liens-vers-les-autres-fichiers-hld)
+
 
 ---
 
@@ -109,16 +108,16 @@ L'infrastructure est composée de **11 machines virtuelles** organisées en **9 
 Le déploiement des briques suit une logique de dépendances stricte. Chaque brique dépend de celles qui la précèdent.
 
 ```
-Sprint 01  →  Documentation & planification
-Sprint 02  →  FW01 pfSense (prérequis : tout)
-Sprint 03  →  AD DS + DNS + DHCP (prérequis : FW01)
-Sprint 04  →  GPO (prérequis : AD DS)
-Sprint 05  →  GLPI (prérequis : réseau LAN + DNS)
-Sprint 06  →  WSUS (prérequis : AD DS + DNS)
-Sprint 07  →  VoIP + Messagerie (prérequis : réseau LAN)
-Sprint 08  →  Clients (prérequis : AD DS + DHCP + DNS + GPO)
-Sprint 09  →  Objectifs secondaires (prérequis : tout)
-Sprint 10  →  Finalisation & présentation
+Sprint 01  ->  Documentation & planification
+Sprint 02  ->  FW01 pfSense (prérequis : tout)
+Sprint 03  ->  AD DS + DNS + DHCP (prérequis : FW01)
+Sprint 04  ->  GPO (prérequis : AD DS)
+Sprint 05  ->  GLPI (prérequis : réseau LAN + DNS)
+Sprint 06  -> WSUS (prérequis : AD DS + DNS)
+Sprint 07  ->  VoIP + Messagerie (prérequis : réseau LAN)
+Sprint 08  ->  Clients (prérequis : AD DS + DHCP + DNS + GPO)
+Sprint 09  ->  Objectifs secondaires (prérequis : tout)
+Sprint 10  ->  Finalisation & présentation
 ```
 
 
