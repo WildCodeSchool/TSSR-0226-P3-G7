@@ -1,11 +1,9 @@
-# context.md - Contexte et besoins du projet
+# context.md : Contexte et besoins du projet
 
-> **Type** : HLD - High Level Design  
+> **Type** : HLD (High Level Design)  
 > **Dossier** : `architecture/`  
 > **Projet** : TSSR Projet 3 - Build Your Infra  
 > **Client** : Pharmgreen - Lyon  
-> **Dernière mise à jour** : 28/05/2026  
-> **Auteur** : Patrick TAMBWE
 
 ---
 
@@ -133,9 +131,8 @@ Rappel: Ces besoins sont **optionnels** mais au moins 50 % doivent être réalis
 | Fichier RH contient des données fictives (tél. fixe) | Données | Champ téléphone fixe non importé dans l'AD |
 | 3 prestataires Kamera à exclure de l'AD DS | Organisationnelle | Filtre `Société = Pharmgreen` dans le script d'import |
 | Nom du domaine AD non modifiable après promotion | Technique | `tssr.lan` défini définitivement dès le Sprint 03 |
-| Zimbra chronophage à l'installation | Technique | 5h+ prévues — iRedMail en solution de repli |
+| Zimbra chronophage à l'installation | Technique | 5h+ prévues : iRedMail en solution de repli |
 
 ---
 
-*Document maintenu par Patrick TAMBWE · Projet TSSR_P3_G7 · Pharmgreen · tssr.lan*
 
