@@ -1,4 +1,4 @@
-# GPO — Stratégies de Groupe
+# GPO : Stratégies de Groupe
 > Documentation technique de la brique GPO du projet Pharmgreen.
 > Couvre les 7 GPO obligatoires créées et testées durant le Sprint 04.
 
@@ -20,7 +20,7 @@
 
 | Fichier | Description |
 |---|---|
-| `README.md` | Ce fichier — présentation de la brique GPO |
+| `README.md` | Ce fichier: présentation de la brique GPO |
 | `configuration.md` | Configuration détaillée de chaque GPO |
 
 ---
