@@ -1,4 +1,4 @@
-# CONFIGURATION.md : Tests fonctionnels & correction AGDLP
+# Tests fonctionnels & modification AGDLP
 
 ---
 
