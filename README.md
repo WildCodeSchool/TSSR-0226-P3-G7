@@ -1,13 +1,10 @@
-# PHARMGREEN — INFRASTRUCTURE RESEAU 
+# PHARMGREEN : INFRASTRUCTURE RESEAU 
 
-> **Type** : DAT - Documentation d'Architecture Technique  
-> **Formation** : TSSR - Technicien Supérieur Systèmes et Réseaux  
-> **Projet** : Projet 3 - Build Your Infra
-> **Prestataire** : Patrick TAMBWE  
+> **Type** : DAT (Documentation d'Architecture Technique)   
+> **Projet** : Projet 3 (Build Your Infra)
 > **Client** : Pharmgreen - Lyon  
 > **Domaine AD** : `tssr.lan`  
 > **Durée** : 10 semaines · 10 sprints  
-> **Statut** : En cours
 
 ---
 
@@ -86,15 +83,15 @@ Ce dépôt GitHub constitue le **livrable documentaire officiel** de ce projet. 
 
 | # | Service | Machine | Statut |
 |---|---------|---------|--------|
-| 01 | Pare-feu périmétrique WAN/LAN/DMZ | FW01 - pfSense | Fait |
-| 02 | Contrôleur de domaine Active Directory | SRVWIN01 - Win Server 2022 | A faire |
-| 03 | Service DNS interne | SRVWIN01 - Rôle DNS | A faire |
-| 04 | Service DHCP pour le LAN | SRVWIN01 - Rôle DHCP | A faire |
-| 05 | Gestion de parc et ticketing | SRVLX01 - GLPI | A faire  |
-| 06 | Serveur de mises à jour | SRVWIN04 - WSUS | A faire |
-| 07 | Téléphonie VoIP | IPBX01 - FreePBX | A faire |
-| 08 | Serveur de messagerie interne | SRVLX01 - Zimbra | A faire |
-| 09 | Postes clients intégrés au domaine | CLIWIN01 / CLIWIN02 | A faire |
+| 01 | Pare-feu périmétrique WAN/LAN/DMZ | FW01: pfSense | Fait |
+| 02 | Contrôleur de domaine Active Directory | SRVWIN01: Win Server 2022 | Fait |
+| 03 | Service DNS interne | SRVWIN01: Rôle DNS | Fait |
+| 04 | Service DHCP pour le LAN | SRVWIN01: Rôle DHCP | Fait |
+| 05 | Gestion de parc et ticketing | SRVLX01: GLPI | Fait  |
+| 06 | Serveur de mises à jour | SRVWIN04: WSUS | Fait |
+| 07 | Téléphonie VoIP | IPBX01: FreePBX | Fait |
+| 08 | Serveur de messagerie interne | SRVLX01: iRedMail | Fait |
+| 09 | Postes clients intégrés au domaine | CLIWIN01 / CLIWIN02 | Fait |
 
 
 ### 3.2 Objectifs secondaires
@@ -108,7 +105,7 @@ Ce dépôt GitHub constitue le **livrable documentaire officiel** de ce projet. 
 | S05 | WSUS via GPO | A faire |
 | S06 | Serveur web interne LAN | A faire |
 | S07 | Serveur web externe DMZ | A faire |
-| S08 | Synchronisation GLPI ↔ AD DS | A faire |
+| S08 | Synchronisation GLPI <-> AD DS | A faire |
 | S09 | Switches virtuels + routeur VyOS | A faire |
 
 ---
