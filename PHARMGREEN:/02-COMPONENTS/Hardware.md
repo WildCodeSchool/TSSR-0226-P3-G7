@@ -1,12 +1,10 @@
-# hardware.md — Inventaire du matériel
+# hardware.md : Inventaire du matériel
 
-> **Type** : LLD - Low Level Design  
+> **Type** : LLD  (Low Level Design)  
 > **Dossier** : `components/`  
 > **Projet** : TSSR Projet 3 - Build Your Infra  
 > **Client** : Pharmgreen - Lyon  
 > **Domaine AD** : `tssr.lan`  
-> **Dernière mise à jour** : 03/06/2026  
-> **Auteur** : Patrick TAMBWE
 
 ---
 
@@ -50,7 +48,7 @@ Toute l'infrastructure Pharmgreen est déployée sur un **hyperviseur de type 2*
 
 ## 2. Inventaire des machines virtuelles
 
-### Vue d'ensemble - objectifs principaux (8 VMs)
+### Vue d'ensemble : objectifs principaux (8 VMs)
 
 | Nom VM | Type | OS | RAM | vCPU | Disque | Zone | Priorité |
 |--------|------|----|-----|------|--------|------|----------|
@@ -63,7 +61,7 @@ Toute l'infrastructure Pharmgreen est déployée sur un **hyperviseur de type 2*
 | CLIWIN01 | Client | Windows 11 | 2 Go | 2 | 60 Go | LAN | Principale |
 | CLIWIN02 | Client | Windows 11 | 4 Go | 2 | 60 Go | LAN | Principale |
 
-### VMs supplémentaires — objectifs secondaires (3 VMs)
+### VMs supplémentaires : objectifs secondaires (3 VMs)
 
 | Nom VM | Type | OS | RAM | vCPU | Disque | Zone | Priorité |
 |--------|------|----|-----|------|--------|------|----------|
@@ -79,7 +77,7 @@ Toute l'infrastructure Pharmgreen est déployée sur un **hyperviseur de type 2*
 
 ---
 
-### FW01 — Pare-feu pfSense
+### FW01 : Pare-feu pfSense
 
 | Paramètre | Valeur |
 |-----------|--------|
@@ -99,7 +97,7 @@ Toute l'infrastructure Pharmgreen est déployée sur un **hyperviseur de type 2*
 
 ---
 
-### SRVWIN01 — Contrôleur de domaine principal
+### SRVWIN01 : Contrôleur de domaine principal
 
 | Paramètre | Valeur |
 |-----------|--------|
@@ -124,7 +122,7 @@ Toute l'infrastructure Pharmgreen est déployée sur un **hyperviseur de type 2*
 
 ---
 
-### SRVWIN02 - Contrôleur de domaine secondaire *(objectif secondaire)*
+### SRVWIN02 : Contrôleur de domaine secondaire *(objectif secondaire)*
 
 | Paramètre | Valeur |
 |-----------|--------|
@@ -146,7 +144,7 @@ Toute l'infrastructure Pharmgreen est déployée sur un **hyperviseur de type 2*
 
 ---
 
-### SRVWIN03 - Contrôleur de domaine tertiaire *(objectif secondaire)*
+### SRVWIN03 : Contrôleur de domaine tertiaire *(objectif secondaire)*
 
 | Paramètre | Valeur |
 |-----------|--------|
@@ -168,7 +166,7 @@ Toute l'infrastructure Pharmgreen est déployée sur un **hyperviseur de type 2*
 
 ---
 
-### SRVWIN04 — Serveur WSUS
+### SRVWIN04 : Serveur WSUS
 
 | Paramètre | Valeur |
 |-----------|--------|
@@ -196,7 +194,7 @@ Toute l'infrastructure Pharmgreen est déployée sur un **hyperviseur de type 2*
 | Paramètre | Valeur |
 |-----------|--------|
 | **Nom machine** | SRVLX01 |
-| **Rôle** | GLPI (gestion de parc + ticketing) · Zimbra (messagerie) |
+| **Rôle** | GLPI (gestion de parc + ticketing) · iRedMail (messagerie) |
 | **OS** | Debian 12 (Bookworm) - CLI sans interface graphique |
 | **RAM** | 2 Go |
 | **vCPU** | 2 |
@@ -215,7 +213,7 @@ Toute l'infrastructure Pharmgreen est déployée sur un **hyperviseur de type 2*
 
 ---
 
-### IPBX01 - Serveur VoIP FreePBX
+### IPBX01 : Serveur VoIP FreePBX
 
 | Paramètre | Valeur |
 |-----------|--------|
@@ -238,7 +236,7 @@ Toute l'infrastructure Pharmgreen est déployée sur un **hyperviseur de type 2*
 
 ---
 
-### SRVWEB01 - Serveur web interne *(objectif secondaire)*
+### SRVWEB01 : Serveur web interne *(objectif secondaire)*
 
 | Paramètre | Valeur |
 |-----------|--------|
@@ -260,7 +258,7 @@ Toute l'infrastructure Pharmgreen est déployée sur un **hyperviseur de type 2*
 
 ---
 
-### SRVWEB02 - Serveur web externe (DMZ)
+### SRVWEB02 : Serveur web externe (DMZ)
 
 | Paramètre | Valeur |
 |-----------|--------|
@@ -282,7 +280,7 @@ Toute l'infrastructure Pharmgreen est déployée sur un **hyperviseur de type 2*
 
 ---
 
-### CLIWIN01 — Poste client Windows 11
+### CLIWIN01 : Poste client Windows 11
 
 | Paramètre | Valeur |
 |-----------|--------|
@@ -303,7 +301,7 @@ Toute l'infrastructure Pharmgreen est déployée sur un **hyperviseur de type 2*
 
 ---
 
-### CLIWIN02 — Poste client Windows 11
+### CLIWIN02 : Poste client Windows 11
 
 | Paramètre | Valeur |
 |-----------|--------|
@@ -313,7 +311,7 @@ Toute l'infrastructure Pharmgreen est déployée sur un **hyperviseur de type 2*
 | **RAM** | 4 Go |
 | **vCPU** | 2 |
 | **Disque** | 60 Go (C:) |
-| **Adresse IP** | DHCP (plage 172.16.10.10 → 172.16.10.200) |
+| **Adresse IP** | DHCP (plage 172.16.10.10 -> 172.16.10.200) |
 | **Zone** | LAN |
 | **Domaine** | `tssr.lan` |
 | **Login local** | `wilder` / `Azerty1*` |
@@ -394,6 +392,4 @@ Le démarrage des VMs doit toujours respecter l'ordre suivant pour éviter les e
 > Recommandation: Ne jamais démarrer les postes clients avant que FW01 et SRVWIN01 soient complètement démarrés et opérationnels. Sans DNS et DHCP fonctionnels, les clients ne peuvent pas rejoindre le domaine.
 
 ---
-
-*Document maintenu par Patrick TAMBWE · Projet TSSR_P3_G7 · Pharmgreen · tssr.lan*
 
